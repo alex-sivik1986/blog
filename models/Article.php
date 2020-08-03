@@ -64,34 +64,23 @@ class Article extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
         ];
     }
+	
+	public function getImage()
+	{
+		if($this->image)
+		{
+			return '/uploads/' . $this->image;
+		}
+		
+		return '/no-image.png';
+		
+	}
 
-    /**
-     * Gets query for [[ArticleTags]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getArticleTags()
-    {
-        return $this->hasMany(ArticleTag::className(), ['article_id' => 'id']);
-    }
+    public function saveImage($filename)
+	{		
+		$this->image = $filename;
+		return $this->save('false');		
+	}
+	
 
-    /**
-     * Gets query for [[Tags]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTags()
-    {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('article_tag', ['article_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Comments]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getComments()
-    {
-        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
-    }
 }

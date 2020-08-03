@@ -5,6 +5,8 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
+use app\models\ImageUpload;
+use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -103,7 +105,11 @@ class ArticleController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
-    {
+    {   
+	    $image = new ImageUpload();
+		$article_image = $this->findModel($id);
+		$image->deleteImage($article_image->image);
+		
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -124,4 +130,25 @@ class ArticleController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+	
+	public function actionUploadImage($id) 
+	{
+		$model = new ImageUpload;
+		
+		if(Yii::$app->request->isPost) {
+			
+			$article = $this->findModel($id);
+			
+			$file = UploadedFile::getInstance($model, 'image');
+			
+			if($article->saveImage($model->uploadFile($file, $article->image))) {
+				
+				return $this->redirect(['view', 'id' => $article->id]);
+			}
+		
+		}
+		
+		return $this->render('image', ['model' => $model]);
+		
+	}
 }
