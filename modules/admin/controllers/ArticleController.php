@@ -6,10 +6,12 @@ use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
 use app\models\ImageUpload;
+use app\models\Category;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -87,13 +89,18 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+	
+		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
+		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
+    
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+			'selected' => $selectedCategory,
+			'categories' => $categories
         ]);
     }
 
@@ -150,5 +157,31 @@ class ArticleController extends Controller
 		
 		return $this->render('image', ['model' => $model]);
 		
+	}
+	
+	public function actionSetCategory($id)
+	{
+		$article = $this->findModel($id);
+		$selectedCategory = $article->category->id; // Тоже самое что и getCategory
+		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
+		
+		if(Yii::$app->request->isPost)
+		{ 
+			$category = Yii::$app->request->post('category');
+			
+			if($article->saveCategory($category))
+			{
+				return $this->redirect(['view', 'id'=>$article->id]);
+			}
+					
+		}
+		
+		return $this->render('category', 
+		[
+		'artucle' => $article,
+		'selected' => $selectedCategory,
+		'categories' => $categories
+		]
+		);
 	}
 }

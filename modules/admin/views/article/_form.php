@@ -17,18 +17,17 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+	<?php 
+	echo $form->field($model, 'category_id')->dropdownList($categories, ['class' => 'form-control']);
+	?>
+
 
     <?= $form->field($model, 'date')->textInput() ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'viewed')->textInput() ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
     <?= $form->field($model, 'status')->textInput() ?>
+	
+	
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
