@@ -35,7 +35,7 @@ class ImageUpload extends Model {
 		
 	}
 	
-	private function folderImage()
+	public function folderImage()
 	{   
 	    $url = Yii::getAlias('@web').'uploads/';
 		return 	$url;	

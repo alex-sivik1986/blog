@@ -1,6 +1,8 @@
 <?php
 
+
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -17,8 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a('Загрузить картинку', ['upload-image', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a('Выбрать категорию', ['set-category', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+		<?php /*= Html::a('Загрузить картинку', ['upload-image', 'id' => $model->id], ['class' => 'btn btn-primary'])*/ ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -36,12 +37,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'content:ntext',
             'date',
-            'image',
             'viewed',
             'user_id',
             'status',
             'category_id',
         ],
     ]) ?>
+	
+	<?php
+       if ($model->image!='') {
+         echo '<br /><p><img src="'.Url::home(). 'uploads/'.$model->image.'"></p>';
+       }    
+    ?>
 
 </div>

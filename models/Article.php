@@ -77,11 +77,6 @@ class Article extends \yii\db\ActiveRecord
 		
 	}
 
-    public function saveImage($filename)
-	{		
-		$this->image = $filename;
-		return $this->save('false');		
-	}
 	
 	public function getCategory()
 	{
@@ -90,7 +85,13 @@ class Article extends \yii\db\ActiveRecord
 		
 	}
 	
-	public function saveCategory($id)
+	    public function saveImage($filename)
+	{		
+		$this->image = $filename;
+		return $this->save('false');		
+	}
+	
+/*	public function saveCategory($id)
 	{   
 		$category = Category::findOne($id);
 		
@@ -101,6 +102,6 @@ class Article extends \yii\db\ActiveRecord
 		}
 		
 	}
-	
+*/	
 
 }

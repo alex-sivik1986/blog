@@ -12,7 +12,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-
+use yii\helpers\FileHelper;
+use yii\helpers\Json;
 /**
  * ArticleController implements the CRUD actions for Article model.
  */
@@ -21,6 +22,8 @@ class ArticleController extends Controller
     /**
      * {@inheritdoc}
      */
+	
+	
     public function behaviors()
     {
         return [
@@ -69,13 +72,31 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
+		$image = new ImageUpload;
+		
+		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
+		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');		
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if(Yii::$app->request->isPost) {
+				
+				$article = $this->findModel($model->id);
+				
+				$file = UploadedFile::getInstance($image, 'image');
+				
+				$article->saveImage($image->uploadFile($file, $article->image));
+				
+		
+			}
+
             return $this->redirect(['view', 'id' => $model->id]);
-        }
+        } 
 
         return $this->render('create', [
             'model' => $model,
+			'image' => $image,
+			'selected' => $selectedCategory,
+			'categories' => $categories
         ]);
     }
 
@@ -89,20 +110,36 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+		
+		$image = new ImageUpload;
+		
 	
 		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
 		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
     
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			if(Yii::$app->request->isPost) {
+			
+			$article = $this->findModel($id);
+			
+			$file = UploadedFile::getInstance($image, 'image');
+			
+			$article->saveImage($image->uploadFile($file, $article->image));
+				
+		
+		}
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
 			'selected' => $selectedCategory,
+			'image' => $image,
 			'categories' => $categories
         ]);
     }
+	
+	
 
     /**
      * Deletes an existing Article model.
@@ -159,7 +196,7 @@ class ArticleController extends Controller
 		
 	}
 	
-	public function actionSetCategory($id)
+/*	public function actionSetCategory($id)
 	{
 		$article = $this->findModel($id);
 		$selectedCategory = $article->category->id; // Тоже самое что и getCategory
@@ -183,5 +220,5 @@ class ArticleController extends Controller
 		'categories' => $categories
 		]
 		);
-	}
+	}*/
 }
