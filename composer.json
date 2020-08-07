@@ -30,6 +30,7 @@
         "codeception/specify": "~0.4.6",
         "symfony/browser-kit": ">=2.7 <=4.2.4",
         "codeception/module-filesystem": "^1.0.0",
+		"kartik-v/yii2-widget-select2": "dev-master",
         "codeception/module-yii2": "^1.0.0",
         "codeception/module-asserts": "^1.0.0"
     },

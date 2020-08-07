@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use kartik\select2\Select2
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
 /* @var $form yii\widgets\ActiveForm */
@@ -33,7 +34,20 @@ use kartik\file\FileInput;
         'allowedFileExtensions'=>['jpg', 'png'],
     ],
 ]); ?>
-
+     
+        <?php 
+        echo Select2::widget([
+            'name' => 'tags',
+            'data' => $tags,
+            'theme' => Select2::THEME_CLASSIC,
+            'options' => ['placeholder' => 'Выберите теги ...', 'multiple' => true, 'autocomplete' => 'off'],
+            'pluginOptions' => [
+                'allowClear' => true,
+				'tags' => true,
+				
+            ],
+        ]);
+        ?>
     <?= $form->field($model, 'status')->textInput() ?>
 	
 	

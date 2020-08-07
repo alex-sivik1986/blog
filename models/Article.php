@@ -31,6 +31,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return 'article';
     }
+	
 
     /**
      * {@inheritdoc}
@@ -73,7 +74,7 @@ class Article extends \yii\db\ActiveRecord
 			return '/uploads/' . $this->image;
 		}
 		
-		return '/no-image.png';
+		return '/uploads/no-image.png';
 		
 	}
 
@@ -85,10 +86,39 @@ class Article extends \yii\db\ActiveRecord
 		
 	}
 	
-	    public function saveImage($filename)
+	public function saveImage($filename)
 	{		
 		$this->image = $filename;
 		return $this->save('false');		
+	}
+	
+	public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('article_tag', ['article_id' => 'id']);
+    }
+	
+    public function	getSelectedTags()
+	{
+		return $this->getTags()->select('id')->asArray()->all();
+	}
+	
+	public function saveTags($tags)
+	{
+		if(is_array($tags)) 
+		{
+			foreach($tags as $tag_id)
+			{				
+				$tag = Tag::findOne($tag_id);
+				if($tag) {
+					$this->link('tags', $tag);
+				}
+			}
+			
+			
+			
+		}
+		
 	}
 	
 /*	public function saveCategory($id)

@@ -7,6 +7,7 @@ use app\models\Article;
 use app\models\ArticleSearch;
 use app\models\ImageUpload;
 use app\models\Category;
+use app\models\Tag;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -73,11 +74,16 @@ class ArticleController extends Controller
     {
         $model = new Article();
 		$image = new ImageUpload;
+		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
+		$selectedTags = $model->getSelectedTags();
 		
 		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
 		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');		
-
+        
+		
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			
             if(Yii::$app->request->isPost) {
 				
 				$article = $this->findModel($model->id);
@@ -85,6 +91,11 @@ class ArticleController extends Controller
 				$file = UploadedFile::getInstance($image, 'image');
 				
 				$article->saveImage($image->uploadFile($file, $article->image));
+				
+				$tags = Yii::$app->request->post('tags');
+				
+				$model->saveTags($tags);
+
 				
 		
 			}
@@ -95,6 +106,8 @@ class ArticleController extends Controller
         return $this->render('create', [
             'model' => $model,
 			'image' => $image,
+			'tags' => $tags,
+		    'selectedTags' => $selectedTags,
 			'selected' => $selectedCategory,
 			'categories' => $categories
         ]);
