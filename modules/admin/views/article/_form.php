@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
-use kartik\select2\Select2
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
 /* @var $form yii\widgets\ActiveForm */
@@ -36,17 +37,18 @@ use kartik\select2\Select2
 ]); ?>
      
         <?php 
-        echo Select2::widget([
-            'name' => 'tags',
-            'data' => $tags,
-            'theme' => Select2::THEME_CLASSIC,
-            'options' => ['placeholder' => 'Выберите теги ...', 'multiple' => true, 'autocomplete' => 'off'],
-            'pluginOptions' => [
-                'allowClear' => true,
-				'tags' => true,
-				
-            ],
-        ]);
+
+echo Select2::widget([
+    'name' => 'tags',
+    'value' => ($selectedTags)?ArrayHelper::getColumn($selectedTags,'id'):'', // initial value
+    'data' => $tags,
+    'maintainOrder' => true,
+    'options' => ['placeholder' => 'Выберите теги ...', 'multiple' => true],
+    'pluginOptions' => [
+        'tags' => true,
+        'maximumInputLength' => 10
+    ],
+]);
         ?>
     <?= $form->field($model, 'status')->textInput() ?>
 	

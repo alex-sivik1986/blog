@@ -75,9 +75,6 @@ class ArticleController extends Controller
         $model = new Article();
 		$image = new ImageUpload;
 		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
-		$selectedTags = $model->getSelectedTags();
-		
-		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
 		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');		
         
 		
@@ -107,8 +104,6 @@ class ArticleController extends Controller
             'model' => $model,
 			'image' => $image,
 			'tags' => $tags,
-		    'selectedTags' => $selectedTags,
-			'selected' => $selectedCategory,
 			'categories' => $categories
         ]);
     }
@@ -125,6 +120,9 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 		
 		$image = new ImageUpload;
+		
+		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
+		$selectedTags = $model->getSelectedTags();
 		
 	
 		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
@@ -147,6 +145,8 @@ class ArticleController extends Controller
         return $this->render('update', [
             'model' => $model,
 			'selected' => $selectedCategory,
+			'tags' => $tags,
+			'selectedTags' => $selectedTags,
 			'image' => $image,
 			'categories' => $categories
         ]);

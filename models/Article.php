@@ -104,12 +104,12 @@ class Article extends \yii\db\ActiveRecord
 	}
 	
 	public function saveTags($tags)
-	{
+	{   
 		if(is_array($tags)) 
 		{
 			foreach($tags as $tag_id)
 			{				
-				$tag = Tag::findOne($tag_id);
+				$tag = Tag::findOne($tag_id); 
 				if($tag) {
 					$this->link('tags', $tag);
 				}
