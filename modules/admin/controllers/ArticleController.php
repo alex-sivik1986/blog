@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use app\models\Article;
+use app\models\ArticleTag;
 use app\models\ArticleSearch;
 use app\models\ImageUpload;
 use app\models\Category;
@@ -118,10 +119,13 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-		
+
 		$image = new ImageUpload;
-		
+		$t = $model::findOne(24);
 		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
+		
+		
+		var_dump($t->tags()); die;
 		$selectedTags = $model->getSelectedTags();
 		
 	
@@ -134,8 +138,13 @@ class ArticleController extends Controller
 			$article = $this->findModel($id);
 			
 			$file = UploadedFile::getInstance($image, 'image');
+				if(!empty($file)) {
+					$article->saveImage($image->uploadFile($file, $article->image));
+				}
+				
+			$tags = Yii::$app->request->post('tags');
 			
-			$article->saveImage($image->uploadFile($file, $article->image));
+			$model->saveTags($tags);
 				
 		
 		}

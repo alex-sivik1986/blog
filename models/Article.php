@@ -80,10 +80,8 @@ class Article extends \yii\db\ActiveRecord
 
 	
 	public function getCategory()
-	{
-		
-		return $this->hasOne(Category::className(), ['id' => 'category_id']);
-		
+	{		
+		return $this->hasOne(Category::className(), ['id' => 'category_id']);		
 	}
 	
 	public function saveImage($filename)
@@ -113,9 +111,7 @@ class Article extends \yii\db\ActiveRecord
 				if($tag) {
 					$this->link('tags', $tag);
 				}
-			}
-			
-			
+			}			
 			
 		}
 		

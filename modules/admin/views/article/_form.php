@@ -31,9 +31,14 @@ use yii\helpers\ArrayHelper;
         'initialPreview'=> Yii::getAlias("@web/uploads/".$model->image),
         'initialPreviewAsData'=>true,
         'overwriteInitial'=>true,
-        'showUpload' =>false,
+        'showUpload' =>true,
         'allowedFileExtensions'=>['jpg', 'png'],
+		'initialPreviewConfig' => [
+            ['caption' => $model->image],
+
+        ],
     ],
+	
 ]); ?>
      
         <?php 
