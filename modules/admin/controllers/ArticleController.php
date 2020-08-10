@@ -121,11 +121,9 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 
 		$image = new ImageUpload;
-		$t = $model::findOne(24);
+	
 		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
-		
-		
-		var_dump($t->tags()); die;
+
 		$selectedTags = $model->getSelectedTags();
 		
 	
