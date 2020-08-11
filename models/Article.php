@@ -105,6 +105,7 @@ class Article extends \yii\db\ActiveRecord
 	{   
 		if(is_array($tags)) 
 		{
+			ArticleTag::deleteAll(['article_id'=>$this->id]);
 			foreach($tags as $tag_id)
 			{				
 				$tag = Tag::findOne($tag_id); 
