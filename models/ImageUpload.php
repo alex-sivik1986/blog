@@ -15,6 +15,7 @@ class ImageUpload extends Model {
     {
         return [
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+	
         ];
     }
 	
