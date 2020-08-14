@@ -121,14 +121,10 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
 		$image = new ImageUpload;
-
 		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
-
 		$selectedTags = $model->getSelectedTags();
 		
-	    $image->image = $model->image;
 		
 		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
 		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');

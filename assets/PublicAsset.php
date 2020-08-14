@@ -19,6 +19,9 @@ class PublicAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+	
+//	public $jsOptions = [ 'position' => \yii\web\View::POS_HEAD ];
+	
     public $css = [
         'frontend/css/bootstrap.min.css',
 		'frontend/css/font-awesome.min.css', 
@@ -30,8 +33,9 @@ class PublicAsset extends AssetBundle
 		  'frontend/js/jquery.min.js',
 		  'frontend/js/bootstrap.min.js',
 		  'frontend/js/main.js',
+		  'frontend/js/loadmore.js'
     ];
     public $depends = [
-       
+//	      'yii\web\JqueryAsset'     
     ];
 }
