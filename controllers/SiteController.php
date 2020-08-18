@@ -10,6 +10,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Article;
+use app\models\Category;
+use app\models\Tag;
 use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 
@@ -66,9 +68,14 @@ class SiteController extends Controller
     {
 		$first_post = Article::find()->orderBy('date DESC')->limit(2)->all();
         $second_post = Article::find()->orderBy('date DESC')->offset(2)->limit(6)->all();
+		$categories = Category::find()->all();
+		$tags = new Tag;
+		$tag = $tags->getArticleTags();
 			return $this->render('index', [
 				'first' => $first_post,
 				'middle' => $second_post,
+				'categories' => $categories,
+				'tags' => $tag 
 			]);
     }
 
@@ -139,32 +146,10 @@ class SiteController extends Controller
 		return $this->render('single');
 	}
 	
-	public function actionLoadmore()    
-	{   
-	    $query = Article::find()->where(['category_id' => $id])->orderBy('date DESC'); 
-		$dataProvider = new ActiveDataProvider([
-			'query' => $query,	
-			'pagination' => [
-				'pageSize' => 3,
-			],
-		]);
-
-		if (Yii::$app->request->isAjax) {
-			return $this->renderAjax('_loadmore', [
-				'dataProvider' => $dataProvider,
-			]);
-		}
-
-	}
 	
 	public function actionCategory($id) 
 	{
 		$query = Article::find()->where(['category_id' => $id])->orderBy('date DESC'); 
-		$countQuery = clone $query; 
-		$pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3]);
-		$models = $query->offset($pages->offset)
-		->limit($pages->limit)
-		->all();
 		
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,	
@@ -175,15 +160,11 @@ class SiteController extends Controller
 		
 		if (Yii::$app->request->isAjax) {
 			return $this->renderAjax('_loadmore', [
-				'articles' => $models,
-			 'pages' => $pages,
 			 'dataProvider' => $dataProvider
 			]);
 		} else {
 
 			return $this->render('category', [
-			 'articles' => $models,
-			 'pages' => $pages,
 			 'dataProvider' => $dataProvider
 			]);
 		}

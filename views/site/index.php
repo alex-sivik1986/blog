@@ -87,11 +87,13 @@ use yii\helpers\Url;
 								<h2>Catagories</h2>
 							</div>
 							<div class="category-widget">
+					
 								<ul>
-									<li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
-									<li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
-									<li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
-									<li><a href="#" class="cat-3">CSS<span>35</span></a></li>
+								<?php $m = 1; foreach($categories as $category): ?>
+							
+									<li><a href="#" class="cat-<?=$m?>"><?=$category->title?><span><?=$category->getArticles()->count()?></span></a></li>
+
+									<? ++$m; endforeach; ?>
 								</ul>
 							</div>
 						</div>
@@ -99,7 +101,7 @@ use yii\helpers\Url;
 						
 						<!-- tags -->
 						<div class="aside-widget">
-							<div class="tags-widget">
+							<div class="tags-widget"><? var_dump($tags); ?>
 								<ul>
 									<li><a href="#">Chrome</a></li>
 									<li><a href="#">CSS</a></li>
