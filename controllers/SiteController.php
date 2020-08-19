@@ -71,13 +71,18 @@ class SiteController extends Controller
 		$categories = Category::find()->all();
 		$tags = new Tag;
 		$tag = $tags->getArticleTags();
+		$featured = Article::getFeatured();
+		
 			return $this->render('index', [
 				'first' => $first_post,
 				'middle' => $second_post,
 				'categories' => $categories,
-				'tags' => $tag 
+				'tags' => $tag,
+				'featured' => $featured
 			]);
     }
+	
+	
 
     /**
      * Login action.
@@ -141,9 +146,20 @@ class SiteController extends Controller
         return $this->render('about');
     }
 	
-	public function actionArticle()
+	public function actionArticle($id)
 	{
-		return $this->render('single');
+		$article = Article::findOne($id);
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
+		
+		return $this->render('single', 
+		[
+			'article' => $article,
+			'featured' => $featured,
+			'categories' => $categories,
+			'most_read' => $most_read
+		]);
 	}
 	
 	

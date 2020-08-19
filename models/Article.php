@@ -118,6 +118,11 @@ class Article extends \yii\db\ActiveRecord
 		
 	}
 	
+	public static function getFeatured() 
+	{
+		return Article::find()->orderBy('viewed desc')->limit(3)->all();
+	}
+	
 /*	public function saveCategory($id)
 	{   
 		$category = Category::findOne($id);

@@ -2,6 +2,8 @@
 use yii\widgets\ListView;
 use sjaakp\loadmore\LoadMorePager;
 ?>		
+</header>
+		<!-- /Header -->
 		<!-- section -->
 		<div class="section">
 			<!-- container -->

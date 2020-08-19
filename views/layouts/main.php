@@ -124,8 +124,7 @@ PublicAsset::register($this);
 				<!-- Aside Nav -->
 			</div>
 			<!-- /Nav -->
-		</header>
-		<!-- /Header -->
+		
 
 
 <?=$content?>

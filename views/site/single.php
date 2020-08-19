@@ -1,224 +1,262 @@
-  <section id="subintro">
-    <div class="jumbotron subhead" id="overview">
-      <div class="container">
-        <div class="row">
-          <div class="span12">
-            <div class="centered">
-              <h3>Single post</h3>
-              <p>
-                Lorem ipsum dolor sit amet, modus salutatus honestatis ex mea. Sit cu probo putant. Nam ne impedit atomorum.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="breadcrumb">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <ul class="breadcrumb notop">
-            <li><a href="#">Home</a><span class="divider">/</span></li>
-            <li class="active">Single post</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="maincontent">
-    <div class="container">
-      <div class="row">
-        <div class="span4">
-          <aside>
-            <div class="widget">
-              <form class="form-search">
-                <input placeholder="Type something" type="text" class="input-medium search-query">
-                <button type="submit" class="btn btn-flat btn-color">Search</button>
-              </form>
-            </div>
-            <div class="widget">
-              <h4>Categories</h4>
-              <ul class="cat">
-                <li><a href="#">Web design (114)</a></li>
-                <li><a href="#">Internet news (15)</a></li>
-                <li><a href="#">Tutorial and tips (20)</a></li>
-                <li><a href="#">Design trends (15)</a></li>
-                <li><a href="#">Online business (10)</a></li>
-              </ul>
-            </div>
-            <div class="widget">
-              <h4>Recent posts</h4>
-              <ul class="recent-posts">
-                <li><a href="#">Lorem ipsum dolor sit amet munere commodo ut nam</a>
-                  <div class="clear">
-                  </div>
-                  <span class="date"><i class="icon-calendar"></i> 6 March, 2013</span>
-                  <span class="comment"><i class="icon-comment"></i> 4 Comments</span>
-                </li>
-                <li><a href="#">Sea nostrum omittantur ne mea malis nominavi insolens</a>
-                  <div class="clear">
-                  </div>
-                  <span class="date"><i class="icon-calendar"></i> 6 March, 2013</span>
-                  <span class="comment"><i class="icon-comment"></i> 2 Comments</span>
-                </li>
-                <li><a href="#">Eius graece recusabo no pri odio tale quo id, mea at saepe</a>
-                  <div class="clear">
-                  </div>
-                  <span class="date"><i class="icon-calendar"></i> 4 March, 2013</span>
-                  <span class="comment"><i class="icon-comment"></i> 12 Comments</span>
-                </li>
-                <li><a href="#">Malorum deserunt at nec usu ad graeco elaboraret at rebum</a>
-                  <div class="clear">
-                  </div>
-                  <span class="date"><i class="icon-calendar"></i> 3 March, 2013</span>
-                  <span class="comment"><i class="icon-comment"></i> 3 Comments</span>
-                </li>
-              </ul>
-            </div>
-            <div class="widget">
-              <h4>Tags</h4>
-              <ul class="tags">
-                <li><a href="#" class="btn">Tutorial</a></li>
-                <li><a href="#" class="btn">Tricks</a></li>
-                <li><a href="#" class="btn">Design</a></li>
-                <li><a href="#" class="btn">Trends</a></li>
-                <li><a href="#" class="btn">Online</a></li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-        <div class="span8">
-          <!-- start article full post -->
-          <article class="blog-post">
-            <div class="post-heading">
-              <h3><a href="#">Single post with standard post format</a></h3>
-            </div>
-            <div class="clearfix">
-            </div>
-            <img src="frontend/img/dummies/blog1.jpg" alt="" />
-            <ul class="post-meta">
-              <li class="first"><i class="icon-calendar"></i><span>March 03, 2013</span></li>
-              <li><i class="icon-list-alt"></i><span><a href="#">3 comments</a></span></li>
-              <li class="last"><i class="icon-tags"></i><span><a href="#">Design</a>, <a href="#">Blog</a>, <a href="#">Tutorial</a></span></li>
-            </ul>
-            <div class="clearfix">
-            </div>
-            <p>
-              Ei eos suavitate forensibus mnesarchum. Eu est timeam vocibus, an nostro aliquam adipiscing quo. Zril equidem et quo, ad albucius scripserit sit. Vis constituto deseruisse an, interesset reprehendunt et mel, gloriatur concludaturque pro no. At ludus mediocritatem
-              qui, no vituperata assueverit accommodare his. Eos simul tritani gubergren et, te vel ullum commodo docendi, ne sea regione laoreet iracundia. His menandri quaestio ea. Ea congue volutpat has, cu vim delenit offendit ullamcorper ius at agam.
-            </p>
-            <blockquote>
-              <p>
-                <i class="icon-64 icon-quote-left left"></i> Eos simul tritani gubergren et, te vel ullum commodo docendi, ne sea regione laoreet iracundia. His menandri quaestio ea. Ea congue volutpat has, cu vim delenit offendit ullamcorper. Ius at
-                agam malorum suscipiantur, sit aliquid percipitur ei.
-              </p>
-            </blockquote>
-            <p>
-              Justo reprehendunt mea at, cu error consul voluptaria usu. Ex vix mucius sadipscing, ea pri timeam delicatissimi, officiis theophrastus sed eu. Et quo copiosae appetere, ad explicari euripidis adversarium pri, invenire eleifend his id. Sed simul vocent
-              appellantur ne, an nam unum commune convenire. Sea an principes dignissim intellegam. Vide duis comprehensam at sit, expetenda deseruisse ea qui. Ei eum similique dissentiet. Agam eloquentiam accommodare ei per, alia graecis consetetur id
-              sit. Ius dicant nonumy ad, modus postea indoctum et mei. Vel legimus percipit te, vidit dicta eam ea. Vidit audire id has, usu ei vero commune. Nam duis adipisci gloriatur eu, te delicata complectitur ius, his ex clita voluptua delicata.
-              At vel malis facilisi signiferumque, mei meis consectetuer ex, vis porro accumsan eu.
-            </p>
-          </article>
-          <!-- end article full post -->
-          <h4>Comments</h4>
-          <ul class="media-list">
-            <li class="media">
-              <a class="pull-left" href="#">
-				<img class="media-object" src="frontend/img/small-avatar.png" alt="" />
-				</a>
-              <div class="media-body">
-                <h5 class="media-heading"><a href="#">John doe</a></h5>
-                <span>3 March, 2013</span>
-                <p>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                </p>
-                <a href="#">Reply</a>
-                <!-- Nested media object -->
-                <div class="media">
-                  <a class="pull-left" href="#">
-						<img class="media-object" src="frontend/img/small-avatar.png" alt="" />
-						</a>
-                  <div class="media-body">
-                    <h5 class="media-heading"><a href="#">Tom slayer</a></h5>
-                    <span>3 March, 2013</span>
-                    <p>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                    </p>
-                    <a href="#">Reply</a>
-                    <!-- Nested media object -->
-                    <div class="media">
-                      <a class="pull-left" href="#">
-								<img class="media-object" src="frontend/img/small-avatar.png" alt="" />
-								</a>
-                      <div class="media-body">
-                        <h5 class="media-heading"><a href="#">Erick doe</a></h5>
-                        <span>3 March, 2013</span>
-                        <p>
-                          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                        </p>
-                        <a href="#">Reply</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Nested media object -->
-                <div class="media">
-                  <a class="pull-left" href="#">
-						<img class="media-object" src="frontend/img/small-avatar.png" alt="" />
-						</a>
-                  <div class="media-body">
-                    <h5 class="media-heading"><a href="#">Jimmy doe</a></h5>
-                    <span>3 March, 2013</span>
-                    <p>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                    </p>
-                    <a href="#">Reply</a>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="media">
-              <a class="pull-left" href="#">
-				<img class="media-object" src="frontend/img/small-avatar.png" alt="" />
-				</a>
-              <div class="media-body">
-                <h5 class="media-heading"><a href="#">Mike sullivan</a></h5>
-                <span>3 March, 2013</span>
-                <p>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                </p>
-                <a href="#">Reply</a>
-              </div>
-            </li>
-          </ul>
-          <div class="comment-post">
-            <h4>Leave a comment</h4>
-            <form action="" method="post" class="comment-form" name="comment-form">
-              <div class="row">
-                <div class="span3">
-                  <label>Name <span>*</span></label>
-                  <input type="text" class="input-block-level" placeholder="Your name" />
-                </div>
-                <div class="span3">
-                  <label>Email <span>*</span></label>
-                  <input type="text" class="input-block-level" placeholder="Your email" />
-                </div>
-                <div class="span6">
-                  <label>URL</label>
-                  <input type="text" class="input-block-level" placeholder="Your website url" />
-                </div>
-                <div class="span8">
-                  <label>Comment <span>*</span></label>
-                  <textarea rows="9" class="input-block-level" placeholder="Your comment"></textarea>
-                  <button class="btn btn-small btn-success" type="submit">Submit comment</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- 
+<?php
+use yii\helpers\Url;
+?>
+				<!-- Page Header -->
+			<div id="post-header" class="page-header">
+				<div class="background-img" style="background-image: url('/uploads/<?=$article->image?>');"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10">
+							<div class="post-meta">
+								<a class="post-category cat-2" href="<?=Url::toRoute(['site/category', 'id' => $article->category_id])?>"><?=$article->category->title?></a>
+								<span class="post-date"><?= \Yii::$app->formatter->asDate($article->date, 'long');?></span>
+							</div>
+							<h1><?=$article->title?></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Page Header -->
+		</header>
+		<!-- /Header -->
+	<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Post content -->
+					<div class="col-md-8">
+						<div class="section-row sticky-container">
+							<div class="main-post">
+							
+								<?=$article->content?>
+								
+							</div>
+							<div class="post-shares sticky-shares">
+								<a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
+								<a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
+								<a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
+								<a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
+								<a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-envelope"></i></a>
+							</div>
+						</div>
+						
+						<!-- author -->
+					<!--	<div class="section-row">
+							<div class="post-author">
+								<div class="media">
+									<div class="media-left">
+										<img class="media-object" src="./img/author.png" alt="">
+									</div>
+									<div class="media-body">
+										<div class="media-heading">
+											<h3>John Doe</h3>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+										<ul class="author-social">
+											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>-->
+						<!-- /author -->
+
+						<!-- comments -->
+						<div class="section-row">
+							<div class="section-title">
+								<h2>3 Comments</h2>
+							</div>
+
+							<div class="post-comments">
+								<!-- comment -->
+								<div class="media">
+									<div class="media-left">
+										<img class="media-object" src="./img/avatar.png" alt="">
+									</div>
+									<div class="media-body">
+										<div class="media-heading">
+											<h4>John Doe</h4>
+											<span class="time">March 27, 2018 at 8:00 am</span>
+											<a href="#" class="reply">Reply</a>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+										<!-- comment -->
+										<div class="media">
+											<div class="media-left">
+												<img class="media-object" src="./img/avatar.png" alt="">
+											</div>
+											<div class="media-body">
+												<div class="media-heading">
+													<h4>John Doe</h4>
+													<span class="time">March 27, 2018 at 8:00 am</span>
+													<a href="#" class="reply">Reply</a>
+												</div>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+											</div>
+										</div>
+										<!-- /comment -->
+									</div>
+								</div>
+								<!-- /comment -->
+
+								<!-- comment -->
+								<div class="media">
+									<div class="media-left">
+										<img class="media-object" src="./img/avatar.png" alt="">
+									</div>
+									<div class="media-body">
+										<div class="media-heading">
+											<h4>John Doe</h4>
+											<span class="time">March 27, 2018 at 8:00 am</span>
+											<a href="#" class="reply">Reply</a>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+									</div>
+								</div>
+								<!-- /comment -->
+							</div>
+						</div>
+						<!-- /comments -->
+
+						<!-- reply -->
+						<div class="section-row">
+							<div class="section-title">
+								<h2>Leave a reply</h2>
+								<p>your email address will not be published. required fields are marked *</p>
+							</div>
+							<form class="post-reply">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<span>Name *</span>
+											<input class="input" type="text" name="name">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<span>Email *</span>
+											<input class="input" type="email" name="email">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<span>Website</span>
+											<input class="input" type="text" name="website">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="input" name="message" placeholder="Message"></textarea>
+										</div>
+										<button class="primary-button">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- /reply -->
+					</div>
+					<!-- /Post content -->
+
+					<!-- aside -->
+					<div class="col-md-4">
+
+						<!-- post widget -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Most Read</h2>
+							</div>
+<? foreach($most_read as $most): ?>
+							<div class="post post-widget">
+								<a class="post-img" href="<?=Url::to(['article', 'id' => $most->id])?>"><img src="/uploads/<?=$most->image?>" alt=""></a>
+								<div class="post-body">
+									<h3 class="post-title"><a href="<?=Url::to(['article', 'id' => $most->id])?>"><?=$most->title?></a></h3>
+								</div>
+							</div>
+<? endforeach; ?>
+						</div>
+						<!-- /post widget -->
+
+						<!-- post widget -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Featured Posts</h2>
+							</div>
+<? foreach($featured as $feat): ?>
+							<div class="post post-thumb">
+								<a class="post-img" href="<?=Url::to(['article', 'id' => $feat->id])?>"><img src="/uploads/<?=$most->image?>" alt=""></a>
+								<div class="post-body">
+									<div class="post-meta">
+										<a class="post-category cat-3" href="<?=Url::to(['category', 'id' => $feat->category_id])?>"><?=$feat->category->title?></a>
+										<span class="post-date"><?= \Yii::$app->formatter->asDate($feat->date, 'long');?></span>
+									</div>
+									<h3 class="post-title"><a href="<?=Url::to(['article', 'id' => $feat->id])?>"><?=$feat->title?></a></h3>
+								</div>
+							</div>
+<? endforeach; ?>
+						</div>
+						<!-- /post widget -->
+						
+						<!-- catagories -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Catagories</h2>
+							</div>
+							<div class="category-widget">
+								<ul>
+								<?php $m = 1; foreach($categories as $category): ?>
+							
+									<li><a href="<?=Url::to(['category', 'id' => $category->id])?>" class="cat-<?=$m?>"><?=$category->title?><span><?=$category->getArticles()->count()?></span></a></li>
+
+									<? ++$m; endforeach; ?>
+								</ul>
+							</div>
+						</div>
+						<!-- /catagories -->
+						
+						<!-- tags -->
+						<div class="aside-widget">
+							<div class="tags-widget">
+								<ul>
+									<li><a href="#">Chrome</a></li>
+									<li><a href="#">CSS</a></li>
+									<li><a href="#">Tutorial</a></li>
+									<li><a href="#">Backend</a></li>
+									<li><a href="#">JQuery</a></li>
+									<li><a href="#">Design</a></li>
+									<li><a href="#">Development</a></li>
+									<li><a href="#">JavaScript</a></li>
+									<li><a href="#">Website</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- /tags -->
+						
+						<!-- archive -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Archive</h2>
+							</div>
+							<div class="archive-widget">
+								<ul>
+									<li><a href="#">January 2018</a></li>
+									<li><a href="#">Febuary 2018</a></li>
+									<li><a href="#">March 2018</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- /archive -->
+					</div>
+					<!-- /aside -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
