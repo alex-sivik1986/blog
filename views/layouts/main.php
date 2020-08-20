@@ -25,7 +25,36 @@ PublicAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+ <?php
+    NavBar::begin([
+        'brandLabel' => Yii::$app->name,
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
+        ],
+    ]);
+    NavBar::end();
+    ?>
  
 		<!-- Header -->
 		<header id="header">
@@ -49,6 +78,19 @@ PublicAsset::register($this);
 							<li class="cat-3"><a href="category.html">Css</a></li>
 							<li class="cat-4"><a href="category.html">Jquery</a></li>
 						</ul>
+						<!-- /nav -->
+						
+						<?php if(Yii::$app->user->isGuest) {?>
+						<ul class="nav-menu nav navbar-nav">
+							<li class="cat-1"><a href="category.html">Register</a></li>
+							<li class="cat-2"><a href="category.html">Login</a></li>
+						</ul>
+						<?php } else { ?>
+						
+						<ul class="nav nav-btns ">
+							<li class="cat-1"><a href="category.html">Logout</a></li>
+						</ul>
+						<?php } ?>
 						<!-- /nav -->
 
 						<!-- search & aside toggle -->
