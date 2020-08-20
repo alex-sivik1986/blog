@@ -166,7 +166,9 @@ class SiteController extends Controller
 	public function actionCategory($id) 
 	{
 		$query = Article::find()->where(['category_id' => $id])->orderBy('date DESC'); 
-		
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,	
 			'pagination' => [
@@ -176,12 +178,14 @@ class SiteController extends Controller
 		
 		if (Yii::$app->request->isAjax) {
 			return $this->renderAjax('_loadmore', [
-			 'dataProvider' => $dataProvider
+			 'dataProvider' => $dataProvider,
 			]);
 		} else {
 
 			return $this->render('category', [
-			 'dataProvider' => $dataProvider
+			 'dataProvider' => $dataProvider,
+			 'featured' => $featured,
+			 'categories' => $categories,
 			]);
 		}
 	}
