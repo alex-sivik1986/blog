@@ -5,6 +5,9 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\User;
+use app\models\Article;
+use app\models\Category;
+use app\models\SignupForm;
 use app\models\LoginForm;
 
 class AuthController extends Controller 
@@ -26,10 +29,44 @@ class AuthController extends Controller
         }
 
         $model->password = '';
-        return $this->render('/site/login', [
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
+		
+        return $this->render('/auth/login', [
             'model' => $model,
+			'featured' => $featured,
+			'categories' => $categories,
+			'most_read' => $most_read
         ]);
     }
+	
+	public function actionRegister()
+	{
+		$model = new SignupForm();
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
+		
+		if(Yii::$app->request->isPost)
+		{
+			$model->load(Yii::$app->request->post());
+			if($model->signup())
+			{
+				return $this->redirect(['auth/login']);
+			}
+					
+		}
+			
+		
+		return $this->render('register',
+		[
+			'model' => $model,
+			'featured' => $featured,
+			'categories' => $categories,
+			'most_read' => $most_read
+		]);
+	}
 
     /**
      * Logout action.

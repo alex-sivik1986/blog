@@ -21,6 +21,16 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '3V6rPfZtgEeS8Gkm6MWjVZwgET3SSejI',
         ],
+		'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,   // отключение дефолтного jQuery
+                    'js' => [
+                        'frontend/js/jquery.min.js', // добавление вашей версии
+                    ]
+                ],
+            ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
