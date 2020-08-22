@@ -9,6 +9,11 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Article;
+use app\models\Category;
+use app\models\Tag;
+use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -61,43 +66,22 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+		$first_post = Article::find()->orderBy('date DESC')->limit(2)->all();
+        $second_post = Article::find()->orderBy('date DESC')->offset(2)->limit(6)->all();
+		$categories = Category::find()->all();
+		$tags = new Tag;
+		$tag = $tags->getArticleTags();
+		$featured = Article::getFeatured();
+		
+			return $this->render('index', [
+				'first' => $first_post,
+				'middle' => $second_post,
+				'categories' => $categories,
+				'tags' => $tag,
+				'featured' => $featured
+			]);
     }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
+	
     /**
      * Displays contact page.
      *
@@ -125,4 +109,48 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+	
+	public function actionArticle($id)
+	{
+		$article = Article::findOne($id);
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
+		
+		return $this->render('single', 
+		[
+			'article' => $article,
+			'featured' => $featured,
+			'categories' => $categories,
+			'most_read' => $most_read
+		]);
+	}
+	
+	
+	public function actionCategory($id) 
+	{
+		$query = Article::find()->where(['category_id' => $id])->orderBy('date DESC'); 
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
+		$dataProvider = new ActiveDataProvider([
+			'query' => $query,	
+			'pagination' => [
+				'pageSize' => 3,
+			],
+		]);
+		
+		if (Yii::$app->request->isAjax) {
+			return $this->renderAjax('_loadmore', [
+			 'dataProvider' => $dataProvider,
+			]);
+		} else {
+
+			return $this->render('category', [
+			 'dataProvider' => $dataProvider,
+			 'featured' => $featured,
+			 'categories' => $categories,
+			]);
+		}
+	}
 }

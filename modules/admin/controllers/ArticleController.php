@@ -88,7 +88,9 @@ class ArticleController extends Controller
 				
 				$file = UploadedFile::getInstance($image, 'image');
 				
-				$article->saveImage($image->uploadFile($file, $article->image));
+				if(!empty($file)) {
+					$article->saveImage($image->uploadFile($file, $article->image));
+				}
 				
 				$tags = Yii::$app->request->post('tags');
 				
@@ -119,33 +121,28 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
 		$image = new ImageUpload;
-	
 		$tags = ArrayHelper::map(Tag::find()->all(),'id','title');
-
 		$selectedTags = $model->getSelectedTags();
 		
-	
+		
 		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
 		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
-    
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			if(Yii::$app->request->isPost) {
+
 			
 			$article = $this->findModel($id);
 			
 			$file = UploadedFile::getInstance($image, 'image');
 				if(!empty($file)) {
 					$article->saveImage($image->uploadFile($file, $article->image));
-				}
+				} 
 				
 			$tags = Yii::$app->request->post('tags');
 			
 			$model->saveTags($tags);
 				
-		
-		}
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

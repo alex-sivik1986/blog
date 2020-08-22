@@ -1,53 +1,166 @@
 <?php
-
-/* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+use yii\helpers\Url;
 ?>
-<div class="site-index">
+</header>
+		<!-- /Header -->
+		<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">	
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<?php foreach($first as $post): ?>
+					<div class="col-md-6">
+						<div class="post post-thumb">
+							<a class="post-img" href="<?=Url::to(['article', 'id' => $post->id])?>"><img src="/uploads/<?=$post->image?>" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category cat-2" href="<?=Url::to(['category', 'id' => $post->category_id])?>"><?=$post->category->title?></a>
+									<span class="post-date"><?=date('F j, Y', strtotime($post->date))?></span>
+								</div>
+								<h3 class="post-title"><a href="<?=Url::to(['article', 'id' => $post->id])?>"><?=$post->title?></a></h3>
+							</div>
+						</div>
+					</div>
+<?php  endforeach; ?>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+				</div>
+				<!-- /row -->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+				<!-- row -->
+				<div class="row">
+			
+<?php foreach($middle as $m_post): ?>
+					<!-- post -->
+					<div class="col-md-4">
+						<div class="post">
+							<a class="post-img" href="<?=Url::to(['article', 'id' => $m_post->id])?>"><img src="/uploads/<?=$m_post->image?>" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category cat-1" href="<?=Url::to(['category', 'id' => $m_post->category_id])?>"><?=$m_post->category->title?></a>
+									<span class="post-date"><?=date('F j, Y', strtotime($m_post->date))?></span>
+								</div>
+								<h3 class="post-title"><a href="<?=Url::to(['article', 'id' => $m_post->id])?>"><?=$m_post->title?></a></h3>
+							</div>
+						</div>
+					</div>
+					<!-- /post -->
+<?php  endforeach; ?>
+					
+				</div>
+				<!-- /row -->
 
-    <div class="body-content">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-8">
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h2>Most commented</h2>
+						</div>
+					</div>
+						<div class="row">
+							<!-- post -->
+							<div class="col-md-12">
+								<div class="post post-thumb">
+									<a class="post-img" href="blog-post.html"><img src="frontend/img/post-2.jpg" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-3" href="category.html">Jquery</a>
+											<span class="post-date">March 27, 2018</span>
+										</div>
+										<h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use JQuery?</a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+					
+					
+						</div>
+					</div>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+					<div class="col-md-4">
+						<!-- post widget -->
+						<!-- catagories -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Catagories</h2>
+							</div>
+							<div class="category-widget">
+					
+								<ul>
+								<?php $m = 1; foreach($categories as $category): ?>
+							
+									<li><a href="<?=Url::to(['category', 'id' => $category->id])?>" class="cat-<?=$m?>"><?=$category->title?><span><?=$category->getArticles()->count()?></span></a></li>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+									<? ++$m; endforeach; ?>
+								</ul>
+							</div>
+						</div>
+						<!-- /catagories -->
+						
+						<!-- tags -->
+						<div class="aside-widget">
+							<div class="tags-widget">
+								<ul>
+									<li><a href="#">Chrome</a></li>
+									<li><a href="#">CSS</a></li>
+									<li><a href="#">Tutorial</a></li>
+									<li><a href="#">Backend</a></li>
+									<li><a href="#">JQuery</a></li>
+									<li><a href="#">Design</a></li>
+									<li><a href="#">Development</a></li>
+									<li><a href="#">JavaScript</a></li>
+									<li><a href="#">Website</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- /tags -->
+			
+	
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+		
+		<!-- section -->
+		<div class="section section-grey">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h2>Featured Posts</h2>
+						</div>
+					</div>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+			
+<? foreach($featured as $article): ?>
+					<div class="col-md-4">
+						<div class="post">
+							<a class="post-img" href="<?=Url::to(['article', 'id' => $article->id])?>"><img src="/uploads/<?=$article->image?>" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category cat-2" href="<?=Url::to(['category', 'id' => $article->category_id])?>"><?=$article->category->title?></a>
+									<span class="post-date"><?
+echo \Yii::$app->formatter->asDate($article->date, 'long');?></span>
+								</div>
+								<h3 class="post-title"><a href="<?=Url::to(['article', 'id' => $article->id])?>"><?=$article->title?></a></h3>
+							</div>
+						</div>
+					</div>
+<? endforeach; ?>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>
