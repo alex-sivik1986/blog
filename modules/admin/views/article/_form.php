@@ -13,7 +13,10 @@ use yii\helpers\ArrayHelper;
 <div class="article-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
-
+ 
+    <?php $checkboxTemplate = '<div class="checkbox i-checks">{beginLabel}{input}{labelTitle}{endLabel}{error}{hint}</div>'; ?>
+    
+	<?= $form->field($model, 'status')->checkbox(['template' => $checkboxTemplate]); ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -55,10 +58,7 @@ echo Select2::widget([
     ],
 ]);
         ?>
-    <?= $form->field($model, 'status')->textInput() ?>
-	
-	
-
+   
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

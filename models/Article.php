@@ -44,7 +44,7 @@ class Article extends \yii\db\ActiveRecord
 			[['date'], 'date', 'format'=>'php:Y-m-d'],
 			[['date'], 'default', 'value' => date('Y-m-d')],
 			[['title'], 'string', 'max' => 255],
-			[['category_id'], 'integer']
+			[['category_id', 'status'], 'integer']
         ];
     }
 
@@ -62,7 +62,7 @@ class Article extends \yii\db\ActiveRecord
             'image' => 'Image',
             'viewed' => 'Viewed',
             'user_id' => 'User ID',
-            'status' => 'Status',
+            'status' => 'Public article?',
             'category_id' => 'Category ID',
         ];
     }

@@ -66,8 +66,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-		$first_post = Article::find()->orderBy('date DESC')->limit(2)->all();
-        $second_post = Article::find()->orderBy('date DESC')->offset(2)->limit(6)->all();
+		$first_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',NULL])->orderBy('date DESC')->limit(2)->all();
+		var_dump($first_post); 
+        $second_post = Article::find()->where(['status' => 1])->orderBy('date DESC')->offset(2)->limit(6)->all();
 		$categories = Category::find()->all();
 		$tags = new Tag;
 		$tag = $tags->getArticleTags();
