@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -66,19 +67,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-		$first_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',NULL])->orderBy('date DESC')->limit(2)->all();
-		var_dump($first_post); 
-        $second_post = Article::find()->where(['status' => 1])->orderBy('date DESC')->offset(2)->limit(6)->all();
+		$first_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(2)->all();
+
+        $second_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->offset(2)->limit(6)->all();
 		$categories = Category::find()->all();
-		$tags = new Tag;
-		$tag = $tags->getArticleTags();
+		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+		
 		$featured = Article::getFeatured();
 		
 			return $this->render('index', [
 				'first' => $first_post,
 				'middle' => $second_post,
 				'categories' => $categories,
-				'tags' => $tag,
+				'tags' => $tags,
 				'featured' => $featured
 			]);
     }
@@ -111,19 +112,54 @@ class SiteController extends Controller
         return $this->render('about');
     }
 	
+	public function actionTag($name)
+	{
+		$tag = Tag::getTagForName($name);
+		$articles = new Article();
+		$featured = Article::getFeatured();
+		$most_read = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(5)->all();
+		$categories = Category::find()->all();
+		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+	
+		$dataProvider = new ActiveDataProvider([
+			'query' => $articles::find()->where(['tag_id' => $tag->id])->joinWith('tags'),	
+			'pagination' => [
+				'pageSize' => 3,
+			],
+		]);
+		//var_dump($dataProvider); die;
+		if (Yii::$app->request->isAjax) {
+			return $this->renderAjax('_loadmore', [
+			 'dataProvider' => $dataProvider,
+			]);
+		} else {
+
+			return $this->render('tag', [
+			 'dataProvider' => $dataProvider,
+			 'featured' => $featured,
+			 'categories' => $categories,
+			 'tags' => $tags
+			]);
+		}
+		
+		
+	}
+	
 	public function actionArticle($id)
 	{
 		$article = Article::findOne($id);
 		$featured = Article::getFeatured();
-		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+		$most_read = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();
+		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		
 		return $this->render('single', 
 		[
 			'article' => $article,
 			'featured' => $featured,
 			'categories' => $categories,
-			'most_read' => $most_read
+			'most_read' => $most_read,
+			'tags' => $tags
 		]);
 	}
 	
@@ -134,6 +170,7 @@ class SiteController extends Controller
 		$featured = Article::getFeatured();
 		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();
+		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,	
 			'pagination' => [
@@ -151,6 +188,7 @@ class SiteController extends Controller
 			 'dataProvider' => $dataProvider,
 			 'featured' => $featured,
 			 'categories' => $categories,
+			 'tags' => $tags
 			]);
 		}
 	}

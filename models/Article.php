@@ -105,7 +105,9 @@ class Article extends \yii\db\ActiveRecord
 	{   
 		if(is_array($tags)) 
 		{
-			ArticleTag::deleteAll(['article_id'=>$this->id]);
+
+			ArticleTag::deleteAll(['article_id' => $this->id]);
+
 			foreach($tags as $tag_id)
 			{				
 				$tag = Tag::findOne($tag_id); 
@@ -120,7 +122,7 @@ class Article extends \yii\db\ActiveRecord
 	
 	public static function getFeatured() 
 	{
-		return Article::find()->orderBy('viewed desc')->limit(3)->all();
+		return Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('viewed desc')->limit(3)->all();
 	}
 	
 /*	public function saveCategory($id)
