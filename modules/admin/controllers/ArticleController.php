@@ -80,7 +80,7 @@ class ArticleController extends Controller
         
 		
 		
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveArticle()) {
 			
             if(Yii::$app->request->isPost) {
 				
@@ -129,7 +129,7 @@ class ArticleController extends Controller
 		$selectedCategory = $model->category_id; // Тоже самое что и getCategory
 		$categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveArticle()) {
 
 			
 			$article = $this->findModel($id);

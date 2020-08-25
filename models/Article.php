@@ -44,7 +44,7 @@ class Article extends \yii\db\ActiveRecord
 			[['date'], 'date', 'format'=>'php:Y-m-d'],
 			[['date'], 'default', 'value' => date('Y-m-d')],
 			[['title'], 'string', 'max' => 255],
-			[['category_id', 'status'], 'integer']
+			[['category_id', 'status', 'user_id'], 'integer']
         ];
     }
 
@@ -123,6 +123,13 @@ class Article extends \yii\db\ActiveRecord
 	public static function getFeatured() 
 	{
 		return Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('viewed desc')->limit(3)->all();
+	}
+	
+	public function saveArticle() 
+	{
+		$this->user_id = Yii::$app->user->id;
+	//	var_dump($this->user_id);  die;
+		return $this->save();
 	}
 	
 /*	public function saveCategory($id)

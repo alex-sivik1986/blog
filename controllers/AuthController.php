@@ -8,7 +8,9 @@ use app\models\User;
 use app\models\Article;
 use app\models\Category;
 use app\models\SignupForm;
+use app\models\Tag;
 use app\models\LoginForm;
+use yii\helpers\ArrayHelper;
 
 class AuthController extends Controller 
 {
@@ -32,12 +34,14 @@ class AuthController extends Controller
 		$featured = Article::getFeatured();
 		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();
+		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		
         return $this->render('/auth/login', [
             'model' => $model,
 			'featured' => $featured,
 			'categories' => $categories,
-			'most_read' => $most_read
+			'most_read' => $most_read,
+			'tags' => $tags
         ]);
     }
 	
@@ -47,6 +51,7 @@ class AuthController extends Controller
 		$featured = Article::getFeatured();
 		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();
+		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		
 		if(Yii::$app->request->isPost)
 		{
@@ -64,7 +69,8 @@ class AuthController extends Controller
 			'model' => $model,
 			'featured' => $featured,
 			'categories' => $categories,
-			'most_read' => $most_read
+			'most_read' => $most_read,
+			'tags' => $tags
 		]);
 	}
 

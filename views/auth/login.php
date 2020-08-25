@@ -61,7 +61,8 @@ $this->params['breadcrumbs'][] = $this->title;
 						[
 						'featured' => $featured,
 						'most_read' => $most_read,
-						'categories' => $categories
+						'categories' => $categories,
+						'tags' => $tags
 						]
 
 						)?>
