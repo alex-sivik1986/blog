@@ -69,7 +69,7 @@ use yii\helpers\Url;
 						</div>
 						<!-- /tags -->
 						
-						<!-- archive -->
+						<!-- 
 						<div class="aside-widget">
 							<div class="section-title">
 								<h2>Archive</h2>
@@ -82,6 +82,6 @@ use yii\helpers\Url;
 								</ul>
 							</div>
 						</div>
-						<!-- /archive -->
+					 -->
 					</div>
 					<!-- /aside -->

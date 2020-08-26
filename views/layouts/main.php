@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\PublicAsset;
+use yii\web\View;
 
 PublicAsset::register($this);
 ?>
@@ -74,7 +75,7 @@ PublicAsset::register($this);
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 							<div class="search-form">
-								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+								<input class="search-input" value="" type="text" name="search" placeholder="Enter Your Search ...">
 								<button class="search-close"><i class="fa fa-times"></i></button>
 							</div>
 						</div>
@@ -222,6 +223,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<!-- /Footer -->
 
 <?php $this->endBody() ?>
+
+<?php
+$js = <<<JS
+$(".search-input").keyup(function(event) {
+    if (event.keyCode === 13) {
+       var search = $(this);
+	   $.ajax({
+		   action: /search,
+		   method: 'POST',
+		   data: search,
+		   success: function (data) {
+
+		   },
+           error: function(jqXHR, errMsg) {
+            alert(errMsg);
+        }		   
+		   
+		   
+	   })
+	   console.log(search.value)
+	   	
+    }
+});
+
+JS;
+$this->registerJs($js);
+
+
+?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php  $this->endPage() ?>

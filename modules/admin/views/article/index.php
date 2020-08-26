@@ -34,11 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
 				}
 				
 			],
-            'title',
+			'title',
+			[
+				'format' => 'text',
+				'label' => 'Category',
+				'value' => function($data){ 
+					return $data->category->title;
+				}
+				
+			],
             'description:ntext',
-            'content:ntext',
             'date',
-			
             //'image',
             //'viewed',
             //'user_id',
