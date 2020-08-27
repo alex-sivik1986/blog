@@ -123,7 +123,6 @@ class SiteController extends Controller
 			$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
 			$categories = Category::find()->all();
 			$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
-var_dump($search); die;
 			
 			return $this->render('category', [
 			 'dataProvider' => $search,
