@@ -110,6 +110,35 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }	
+	
+	public function actionSearch()
+    {
+        $model = new \app\models\ArticleSearch();
+		if(Yii::$app->request->isPost)
+		{
+			
+			$search = $model->search([$model->formName()=>Yii::$app->request->post()]);
+			$featured = Article::getFeatured();
+			$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+			$categories = Category::find()->all();
+			$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+var_dump($search); die;
+			
+			return $this->render('category', [
+			 'dataProvider' => $search,
+			 'featured' => $featured,
+			 'categories' => $categories,
+			 'tags' => $tags
+			]);
+		} else {
+			return $this->render('category', [
+			 'featured' => $featured,
+			 'categories' => $categories,
+			 'tags' => $tags
+			]);
+			
+		}
     }
 	
 	public function actionTag($name)

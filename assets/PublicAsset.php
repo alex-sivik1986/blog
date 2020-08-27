@@ -30,12 +30,12 @@ class PublicAsset extends AssetBundle
 		
     ];
     public $js = [
-		  'frontend/js/jquery.min.js',
+//		  'frontend/js/jquery.min.js',
 		  'frontend/js/bootstrap.min.js',
 		  'frontend/js/main.js',
 		  'frontend/js/loadmore.js'
     ];
     public $depends = [
-//	      'yii\web\JqueryAsset'     
+	      'yii\web\JqueryAsset'     
     ];
 }

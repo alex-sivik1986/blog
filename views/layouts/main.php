@@ -75,7 +75,14 @@ PublicAsset::register($this);
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 							<div class="search-form">
-								<input class="search-input" value="" type="text" name="search" placeholder="Enter Your Search ...">
+							<?php echo Html::beginForm(['/site/search'], 'post', ['class' => 'search-input'])
+								.Html::input(
+									'text',
+									'content',
+									'',
+									[ 'class' => 'search-input', 'placeholder' => 'Enter Your Search ...']
+								)
+								. Html::endForm() ?>
 								<button class="search-close"><i class="fa fa-times"></i></button>
 							</div>
 						</div>
@@ -224,34 +231,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <?php $this->endBody() ?>
 
-<?php
-$js = <<<JS
-$(".search-input").keyup(function(event) {
-    if (event.keyCode === 13) {
-       var search = $(this);
-	   $.ajax({
-		   action: /search,
-		   method: 'POST',
-		   data: search,
-		   success: function (data) {
 
-		   },
-           error: function(jqXHR, errMsg) {
-            alert(errMsg);
-        }		   
-		   
-		   
-	   })
-	   console.log(search.value)
-	   	
-    }
-});
-
-JS;
-$this->registerJs($js);
-
-
-?>
 </body>
 </html>
 <?php  $this->endPage() ?>
