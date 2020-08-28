@@ -125,10 +125,14 @@ class Article extends \yii\db\ActiveRecord
 		return Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('viewed desc')->limit(3)->all();
 	}
 	
+	public function getComments()
+	{
+		return $this->hasMany(Comment::className(),['article_id' => 'id']);
+	}
+	
 	public function saveArticle() 
 	{
 		$this->user_id = Yii::$app->user->id;
-	//	var_dump($this->user_id);  die;
 		return $this->save();
 	}
 	

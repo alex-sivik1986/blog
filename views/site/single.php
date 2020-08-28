@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 ?>
 				<!-- Page Header -->
 			<div id="post-header" class="page-header">
@@ -69,57 +71,29 @@ use yii\helpers\Url;
 
 						<!-- comments -->
 						<div class="section-row">
+						<? if(!empty($comments)): ?>
 							<div class="section-title">
-								<h2>3 Comments</h2>
+								<h2><?=$comments->count?> Comments</h2>
 							</div>
-
+						<? endif; ?>
 							<div class="post-comments">
+
 								<!-- comment -->
+								<? foreach($comments as $comment): ?>
 								<div class="media">
 									<div class="media-left">
-										<img class="media-object" src="./img/avatar.png" alt="">
+										<img class="media-object" src="frontend/img/avatar.png" alt="">
 									</div>
 									<div class="media-body">
 										<div class="media-heading">
-											<h4>John Doe</h4>
-											<span class="time">March 27, 2018 at 8:00 am</span>
-											<a href="#" class="reply">Reply</a>
+											<h4><?=$comment->user->name?></h4>
+											<span class="time"><?= \Yii::$app->formate->asDate($comment->date, 'long')?></span>
+											<!--<a href="#" class="reply">Reply</a>-->
 										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-										<!-- comment -->
-										<div class="media">
-											<div class="media-left">
-												<img class="media-object" src="./img/avatar.png" alt="">
-											</div>
-											<div class="media-body">
-												<div class="media-heading">
-													<h4>John Doe</h4>
-													<span class="time">March 27, 2018 at 8:00 am</span>
-													<a href="#" class="reply">Reply</a>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-											</div>
-										</div>
-										<!-- /comment -->
+										<p><?=$comment->text?></p>
 									</div>
 								</div>
-								<!-- /comment -->
-
-								<!-- comment -->
-								<div class="media">
-									<div class="media-left">
-										<img class="media-object" src="./img/avatar.png" alt="">
-									</div>
-									<div class="media-body">
-										<div class="media-heading">
-											<h4>John Doe</h4>
-											<span class="time">March 27, 2018 at 8:00 am</span>
-											<a href="#" class="reply">Reply</a>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-									</div>
-								</div>
+								<? endforeach; ?>
 								<!-- /comment -->
 							</div>
 						</div>
@@ -131,34 +105,19 @@ use yii\helpers\Url;
 								<h2>Leave a reply</h2>
 								<p>your email address will not be published. required fields are marked *</p>
 							</div>
-							<form class="post-reply">
+					<?php $form = ActiveForm::begin(['action' => 'site/comment', 'options' => ['class'=>'post-reply']]); ?>
 								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<span>Name *</span>
-											<input class="input" type="text" name="name">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<span>Email *</span>
-											<input class="input" type="email" name="email">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<span>Website</span>
-											<input class="input" type="text" name="website">
-										</div>
-									</div>
+								
 									<div class="col-md-12">
 										<div class="form-group">
-											<textarea class="input" name="message" placeholder="Message"></textarea>
+										<?=$form->field($comment_form, 'comment_text')->textarea(['class' => 'input', 'placeholder' => 'Message'])->label('')?>
 										</div>
-										<button class="primary-button">Submit</button>
+										<?=Html::submitButton('Submit',['class' => 'primary-button'])?>
+				
 									</div>
 								</div>
-							</form>
+							
+					<?php ActiveForm::end() ?>
 						</div>
 						<!-- /reply -->
 					</div>

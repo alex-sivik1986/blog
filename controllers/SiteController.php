@@ -180,6 +180,8 @@ class SiteController extends Controller
 		$most_read = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+		$comments = $article->comments;
+		$comment_form = new \app\models\CommentForm();
 		
 		return $this->render('single', 
 		[
@@ -187,7 +189,9 @@ class SiteController extends Controller
 			'featured' => $featured,
 			'categories' => $categories,
 			'most_read' => $most_read,
-			'tags' => $tags
+			'tags' => $tags,
+			'comments' => $comments,
+			'comment_form' => $comment_form
 		]);
 	}
 	
