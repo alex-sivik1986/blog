@@ -143,14 +143,16 @@ class SiteController extends Controller
 	
 	public function actionComment($id)
 	{
-		$comment = new CommentForm();
+		$comment = new \app\models\CommentForm();
 		
 		if(Yii::$app->request->isPost)
 		{
-			$model->load(Yii::$app->request->post());
-			if($model->SaveComment($id))
+			$comment->load(Yii::$app->request->post());
+			if($comment->saveComment($id))
 			{
-				return $this->redirect(['site/view', 'id' => $id]);
+				Yii::$app->getSession()->setFlash('comment', 'Your comment well be added 
+after checking moderator');
+				return $this->redirect(['site/article', 'id' => $id]);
 			}
 		}
 	}
@@ -195,7 +197,7 @@ class SiteController extends Controller
 		$most_read = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
-		$comments = $article->comments;
+		$comments = $article->getComments()->where(['status' => 1])->all();
 		$comment_form = new \app\models\CommentForm();
 		
 		return $this->render('single', 

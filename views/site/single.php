@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\web\Session;
 ?>
 				<!-- Page Header -->
 			<div id="post-header" class="page-header">
@@ -87,7 +88,7 @@ use yii\widgets\ActiveForm;
 									<div class="media-body">
 										<div class="media-heading">
 											<h4><?=$comment->user->name?></h4>
-											<span class="time"><?= \Yii::$app->formate->asDate($comment->date, 'long')?></span>
+											<span class="time"><?= \Yii::$app->formatter->asDate($comment->date, 'long')?></span>
 											<!--<a href="#" class="reply">Reply</a>-->
 										</div>
 										<p><?=$comment->text?></p>
@@ -104,7 +105,13 @@ use yii\widgets\ActiveForm;
 							<div class="section-title">
 								<h2>Leave a reply</h2>
 								<p>your email address will not be published. required fields are marked *</p>
+<?php if(Yii::$app->session->getFlash('comment')) { ?>
+<div class="alert alert-success">
+	<?=Yii::$app->session->getFlash('comment')?>
+</div>
+<?php } ?>
 							</div>
+<?php if(!Yii::$app->user->isGuest) { ?>
 					<?php $form = ActiveForm::begin([
 									'action' => ['/site/comment', 'id' => $article->id], 
 									'options' => ['class'=>'post-reply']
@@ -121,6 +128,7 @@ use yii\widgets\ActiveForm;
 								</div>
 							
 					<?php ActiveForm::end() ?>
+<?php } ?>
 						</div>
 						<!-- /reply -->
 					</div>
