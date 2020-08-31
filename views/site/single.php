@@ -105,7 +105,10 @@ use yii\widgets\ActiveForm;
 								<h2>Leave a reply</h2>
 								<p>your email address will not be published. required fields are marked *</p>
 							</div>
-					<?php $form = ActiveForm::begin(['action' => 'site/comment', 'options' => ['class'=>'post-reply']]); ?>
+					<?php $form = ActiveForm::begin([
+									'action' => ['/site/comment', 'id' => $article->id], 
+									'options' => ['class'=>'post-reply']
+									]); ?>
 								<div class="row">
 								
 									<div class="col-md-12">

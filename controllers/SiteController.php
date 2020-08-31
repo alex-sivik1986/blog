@@ -12,6 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Article;
 use app\models\Category;
+use app\models\Comment;
 use app\models\Tag;
 use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
@@ -139,6 +140,20 @@ class SiteController extends Controller
 			
 		}
     }
+	
+	public function actionComment($id)
+	{
+		$comment = new CommentForm();
+		
+		if(Yii::$app->request->isPost)
+		{
+			$model->load(Yii::$app->request->post());
+			if($model->SaveComment($id))
+			{
+				return $this->redirect(['site/view', 'id' => $id]);
+			}
+		}
+	}
 	
 	public function actionTag($name)
 	{
