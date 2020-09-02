@@ -125,6 +125,15 @@ class Article extends \yii\db\ActiveRecord
 		return Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('viewed desc')->limit(3)->all();
 	}
 	
+	public function getViewed($article_id)
+	{
+		
+		$view = Article::findOne($article_id);
+		$view->viewed = $view->viewed + 1;
+		return	$view->save(false);
+		
+	}
+	
 	public function getComments()
 	{
 		return $this->hasMany(Comment::className(),['article_id' => 'id']);

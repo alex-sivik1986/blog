@@ -75,6 +75,8 @@ class SiteController extends Controller
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		
 		$featured = Article::getFeatured();
+		$most_comment = Comment::find()->select('*, COUNT(DISTINCT article_id) AS art')->where(['status' => 1])->all();
+		var_dump($most_comment); die;
 		
 			return $this->render('index', [
 				'first' => $first_post,
@@ -199,6 +201,8 @@ after checking moderator');
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		$comments = $article->getComments()->where(['status' => 1])->all();
 		$comment_form = new \app\models\CommentForm();
+		
+		$article->getViewed($id);
 		
 		return $this->render('single', 
 		[
