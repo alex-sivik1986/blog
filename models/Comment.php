@@ -72,4 +72,18 @@ class Comment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+	
+	public function allow()
+	{
+		$this->status = 1;
+		return $this->save(false);
+		
+	}
+	
+	public function disallow()
+	{
+		$this->status = 0;
+		return $this->save(false);
+		
+	}
 }

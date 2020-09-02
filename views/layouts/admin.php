@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -40,6 +41,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Статьи', 'url' => ['/admin/article']],
+			['label' => 'Комментарии', 'url' => ['/admin/comment']],
 			['label' => 'Категории', 'url' => ['/admin/category']],
 			['label' => 'Теги', 'url' => ['/admin/tag']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -67,6 +69,15 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<?php $this->registerJsFile('/ckeditor/ckeditor.js'); ?>
+<?php $this->registerJsFile('/ckfinder/ckfinder.js'); ?>
+<script>
+$(document).ready(function(){
+	var editor = CKEDITOR.replaceAll();
+    CKFinder.setupCKEditor( editor );
+});
+
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
