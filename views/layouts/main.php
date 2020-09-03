@@ -208,10 +208,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<div class="footer-widget">
 							<h3 class="footer-title">Join our Newsletter</h3>
 							<div class="footer-newsletter">
-								<form>
-									<input class="input" type="email" name="newsletter" placeholder="Enter your email">
-									<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
-								</form>
+<?php $form = \yii\widgets\ActiveForm::begin([
+    'id' => 'sub',
+    'action' => '/site/subscriber',
+    'enableAjaxValidation' => true,
+]); ?>
+<?= Html::input(
+				'email',
+				'email',
+				'',
+				[ 'class' => 'input', 'required' => 'required', 'placeholder' => 'Enter your email']
+								); ?>
+<?= Html::submitButton('<i class="fa fa-paper-plane"></i>', ['class' => 'newsletter-btn']); ?>
+<?php $form->end(); ?>
+								
 							</div>
 							<ul class="footer-social">
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -230,8 +240,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<!-- /Footer -->
 
 <?php $this->endBody() ?>
+<script>
+$('#sub').on('beforeSubmit', function () {
+    var $yiiform = $(this);
+    $.ajax({
+            type: $yiiform.attr('method'),
+            url: $yiiform.attr('action'),
+            data: $yiiform.serializeArray()
+        }
+    )
+    .done(function(data) {
+       if(data.success==true) { 
+		  alert('You subscribe');
+        } else if(data.success=='unscribe') {
+		  alert('You unscribe');
+		} else {
+		   alert('Error, try again');
+        }
+    })
+    .fail(function () {
+		 alert('Error 404')
+    })
 
-
+    return false; 
+})
+</script>
 </body>
 </html>
 <?php  $this->endPage() ?>

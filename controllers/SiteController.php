@@ -75,15 +75,17 @@ class SiteController extends Controller
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		
 		$featured = Article::getFeatured();
-		$most_comment = Comment::find()->select('*, COUNT(DISTINCT article_id) AS art')->where(['status' => 1])->all();
-		var_dump($most_comment); die;
+		$sql = 'SELECT article_id, status, COUNT(*) as art from `comment` where status=1 group by article_id order by count(*) desc limit 1';
+		$most_comment = Comment::findBySql($sql)->one();
+		$most = $most_comment->article;
 		
 			return $this->render('index', [
 				'first' => $first_post,
 				'middle' => $second_post,
 				'categories' => $categories,
 				'tags' => $tags,
-				'featured' => $featured
+				'featured' => $featured,
+			    'most_comment' => $most
 			]);
     }
 	
@@ -244,5 +246,19 @@ after checking moderator');
 			 'tags' => $tags
 			]);
 		}
+	}
+	
+	public function actionSubscriber()
+	{
+		$mail = new \app\models\Subscriber;
+		
+		if(Yii::$app->request->isPost && $mail->load(Yii::$app->request->post(),''))
+		{   
+			\Yii::$app->response->format = Response::FORMAT_JSON;
+			return ['success' => $mail->saveSubscriber()];
+		} else {
+			return ['error' => 'error'];
+		}
+		
 	}
 }

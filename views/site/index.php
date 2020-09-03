@@ -63,13 +63,14 @@ use yii\helpers\Url;
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-thumb">
-									<a class="post-img" href="blog-post.html"><img src="frontend/img/post-2.jpg" alt=""></a>
+								
+									<a class="post-img" href="<?=Url::to(['site/article', 'id' => $most_comment->id])?>"><img src="uploads/<?=$most_comment->image?>" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
-											<a class="post-category cat-3" href="category.html">Jquery</a>
-											<span class="post-date">March 27, 2018</span>
+											<a class="post-category cat-3" href="<?=Url::to(['category', 'id' => $most_comment->category_id])?>"><?=$most_comment->category->title?></a>
+											<span class="post-date"><?=date('F j, Y', strtotime($most_comment->date))?></span>
 										</div>
-										<h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use JQuery?</a></h3>
+										<h3 class="post-title"><a href="<?=Url::to(['site/article', 'id' => $most_comment->id])?>"><?=$most_comment->title?></a></h3>
 									</div>
 								</div>
 							</div>
