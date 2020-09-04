@@ -130,26 +130,18 @@ echo Nav::widget([ 'options' => ['class' => 'nav-menu nav navbar-nav'],
 					<!-- widget posts -->
 					<div class="section-row">
 						<h3>Recent Posts</h3>
-						<div class="post post-widget">
-							<a class="post-img" href="blog-post.html"><img src="frontend/img/widget-2.jpg" alt=""></a>
-							<div class="post-body">
-								<h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
-							</div>
-						</div>
-
-						<div class="post post-widget">
-							<a class="post-img" href="blog-post.html"><img src="frontend/img/widget-3.jpg" alt=""></a>
-							<div class="post-body">
-								<h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-							</div>
-						</div>
-
-						<div class="post post-widget">
-							<a class="post-img" href="blog-post.html"><img src="frontend/img/widget-4.jpg" alt=""></a>
-							<div class="post-body">
-								<h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-							</div>
-						</div>
+<?php
+    $article = new \app\models\Article();
+	$art = $article->find()->where(['status' => 1])->andWhere(['!=', 'category_id', 0])->orderBy('id desc')->limit(3)->all();
+	foreach( $art as $article ){
+?>
+<div class="post post-widget">
+	<a class="post-img" href="<?=Url::to(['site/article', 'id' => $article->id])?>"><img src="uploads/<?=$article->image?>" alt=""></a>
+	<div class="post-body">
+		<h3 class="post-title"><a href="<?=Url::to(['site/article', 'id' => $article->id])?>"><?=$article->title?></a></h3>
+	</div>
+</div>
+<?php } ?>
 					</div>
 					<!-- /widget posts -->
 
