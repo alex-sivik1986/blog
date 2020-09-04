@@ -11,6 +11,10 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+		'menu' => [
+            'class' => '\pceuropa\menu\Menu',
+			'layout' => '/admin'
+        ],
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',

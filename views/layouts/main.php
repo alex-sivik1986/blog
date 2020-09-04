@@ -5,12 +5,13 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\PublicAsset;
 use yii\web\View;
-
+use pceuropa\menu\Menu;
 PublicAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -23,6 +24,13 @@ PublicAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+	<style>
+@media (min-width: 992px) {
+.col-md-4 {
+    min-height: 349px;
+}
+}
+	</style>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -36,12 +44,12 @@ PublicAsset::register($this);
 					<div class="container">
 						<!-- logo -->
 						<div class="nav-logo">
-							<a href="index.html" class="logo"><img src="frontend/img/logo.png" alt=""></a>
+							<a href="/" class="logo"><img src="/frontend/img/logo.png" alt=""></a>
 						</div>
 						<!-- /logo -->
 
 						<!-- nav -->
-						<ul class="nav-menu nav navbar-nav">
+<!--	<ul class="nav-menu nav navbar-nav">
 							<li><a href="category.html">News</a></li>
 							<li><a href="category.html">Popular</a></li>
 							<li class="cat-1"><a href="category.html">Web Design</a></li>
@@ -49,7 +57,25 @@ PublicAsset::register($this);
 							<li class="cat-3"><a href="category.html">Css</a></li>
 							<li class="cat-4"><a href="category.html">Jquery</a></li>
 						</ul>
-						<!-- /nav -->
+						<!-- /nav -->					
+<?php 
+$menu = Menu::NavbarLeft(1);
+$t = 0;
+foreach($menu as $key=>$li) 
+{	
+if($t>1) {
+	$options['options'] = ['class'=>'cat-'.($t-1)];
+	$li += $options;
+}
+	$menus[$key] = $li;
+++$t;	
+}
+echo Nav::widget([ 'options' => ['class' => 'nav-menu nav navbar-nav'],
+					'items' => $menus  // argument is id of menu
+				]);	
+
+?>
+
 						
 						<?php if(Yii::$app->user->isGuest) {?>
 						<div class="nav-btns">
@@ -95,13 +121,9 @@ PublicAsset::register($this);
 				<div id="nav-aside">
 					<!-- nav -->
 					<div class="section-row">
-						<ul class="nav-aside-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="#">Join Us</a></li>
-							<li><a href="#">Advertisement</a></li>
-							<li><a href="contact.html">Contacts</a></li>
-						</ul>
+				<?php echo Nav::widget([ 'options' => ['class' => 'nav-aside-menu'],
+					'items' => Menu::NavbarRight(2)  // argument is id of menu
+				]);	 ?>
 					</div>
 					<!-- /nav -->
 
@@ -194,10 +216,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="footer-widget">
 									<h3 class="footer-title">Catagories</h3>
 									<ul class="footer-links">
-										<li><a href="category.html">Web Design</a></li>
-										<li><a href="category.html">JavaScript</a></li>
-										<li><a href="category.html">Css</a></li>
-										<li><a href="category.html">Jquery</a></li>
+								<?php $category = new \app\models\Category(); 
+								$cat = $category->find()->asArray()->all();                  
+								foreach($cat as $category) { ?>
+								<li><a href="<?=Url::toRoute(['/site/category' , 'id' => $category['id']])?>"><?=$category['title']?></a></li>
+								<?php } ?>
+										
 									</ul>
 								</div>
 							</div>

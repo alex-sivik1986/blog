@@ -23,6 +23,7 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -44,6 +45,7 @@ AppAsset::register($this);
 			['label' => 'Комментарии', 'url' => ['/admin/comment']],
 			['label' => 'Категории', 'url' => ['/admin/category']],
 			['label' => 'Теги', 'url' => ['/admin/tag']],
+			['label' => 'Меню', 'url' => ['/menu/creator']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             
         ],
