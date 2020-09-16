@@ -19,6 +19,11 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+	public const STATUS_ACTIVE = 1;
+	public const STATUS_INACTIVE = 0;
+	
+	public const IS_ADMIN = 1;
+	public const NOT_ADMIN = 0;
     /**
      * {@inheritdoc}
      */
@@ -33,10 +38,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['isAdmin'], 'integer'],
+            [['isAdmin','status'], 'integer'],
             [['name', 'email', 'password', 'photo'], 'string', 'max' => 255],
+			[['status'], 'default', 1]
         ];
     }
+	
 
     /**
      * {@inheritdoc}
@@ -49,7 +56,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => 'Email',
             'password' => 'Password',
             'isAdmin' => 'Is Admin',
-            'photo' => 'Photo',
+            'photo' => 'Photo'
         ];
     }
 
@@ -63,6 +70,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasMany(Comment::className(), ['user_id' => 'id']);
     }
 	
+	public function getAdmin()
+	{
+		return ($this->isAdmin == self::IS_ADMIN) ? self::IS_ADMIN : self::NOT_ADMIN;
+	}
+	
 	public static function findIdentity($id)
 	{
 		return User::findOne($id);
@@ -72,7 +84,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 	{
 		
 	}
-
+	
+	public function getStatus()
+	{
+		return ($this->status == self::STATUS_ACTIVE) ? 'active' : 'inactive';
+	}
+	
+	public function textStatus()
+	{
+		return ($this->status == self::STATUS_ACTIVE) ? 'deactivate' : 'activate';
+	}
   
     public function getId()
 	{

@@ -68,9 +68,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-		$first_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(2)->all();
+		$first_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->limit(2)->with('category')->all();
 
-        $second_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->offset(2)->limit(6)->all();
+        $second_post = Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('date DESC')->offset(2)->limit(6)->with('category')->all();
 		$categories = Category::find()->all();
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 		
@@ -125,7 +125,7 @@ class SiteController extends Controller
 			
 			$search = $model->search([$model->formName()=>Yii::$app->request->post()]);
 			$featured = Article::getFeatured();
-			$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
+			$most_read = Article::find()->orderBy('date DESC')->limit(5)->with('category')->all();
 			$categories = Category::find()->all();
 			$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 			
@@ -171,7 +171,7 @@ after checking moderator');
 		$tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 	
 		$dataProvider = new ActiveDataProvider([
-			'query' => $articles::find()->where(['tag_id' => $tag->id])->joinWith('tags'),	
+			'query' => $articles::find()->where(['tag_id' => $tag->id])->joinWith('tags')->with('category'),	
 			'pagination' => [
 				'pageSize' => 3,
 			],
@@ -221,7 +221,7 @@ after checking moderator');
 	
 	public function actionCategory($id) 
 	{
-		$query = Article::find()->where(['category_id' => $id])->orderBy('date DESC'); 
+		$query = Article::find()->where(['category_id' => $id])->with('category')->orderBy('date DESC'); 
 		$featured = Article::getFeatured();
 		$most_read = Article::find()->orderBy('date DESC')->limit(5)->all();
 		$categories = Category::find()->all();

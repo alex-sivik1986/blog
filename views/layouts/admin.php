@@ -41,11 +41,12 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Статьи', 'url' => ['/admin/article']],
-			['label' => 'Комментарии', 'url' => ['/admin/comment']],
-			['label' => 'Категории', 'url' => ['/admin/category']],
-			['label' => 'Теги', 'url' => ['/admin/tag']],
-			['label' => 'Меню', 'url' => ['/menu/creator']],
+			['label' => 'Users', 'url' => ['/admin/users']],
+            ['label' => 'Post', 'url' => ['/admin/article']],
+			['label' => 'Commentary', 'url' => ['/admin/comment']],
+			['label' => 'Category', 'url' => ['/admin/category']],
+			['label' => 'Tags', 'url' => ['/admin/tag']],
+			['label' => 'Menu site', 'url' => ['/menu/creator']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             
         ],

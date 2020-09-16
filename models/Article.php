@@ -122,7 +122,7 @@ class Article extends \yii\db\ActiveRecord
 	
 	public static function getFeatured() 
 	{
-		return Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('viewed desc')->limit(3)->all();
+		return Article::find()->where(['status' => 1])->andWhere(['!=','category_id',0])->orderBy('viewed desc')->limit(3)->with('category')->all();
 	}
 	
 	public function getViewed($article_id)
